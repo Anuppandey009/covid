@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Vaccine Booth Alert System</h1>
+    <input type="text"id="name">
+    <button onclick="register()"> Register for vaccine</button>
+</body>
+</html>
+
+<script>
+   let queue=["Dicaprio","Ronaldo","Messi","ELon","Neymar"]
+
+   function register(){
+       const name=document.getElementById("name").value
+       queue.push(name)
+       let message=`${name} Your registeration is done`
+       alert(message);
+
+       let promise=new Promise(function(resolve,reject){
+
+       setInterval(function(){
+        if(queue[0]===name){
+               resolve(`${name}, go take a jab now`)
+           }
+       },1000);
+
+
+       })
+
+
+       
+       promise.then(function(res){
+           alert(res);
+       })
+ }
+
+
+ function startVaccination(){
+     queue.shift()
+     console.log("queue:",queue);
+     if(queue.length==0){
+         clearInterval(interval)
+     }
+ }
+
+ 
+ var interval=setInterval(startVaccination,2000)
+</script>
